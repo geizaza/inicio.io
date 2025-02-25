@@ -65,17 +65,13 @@
     /* Carrossel */
     .carousel-container {
       position: relative;
-      display: flex;
-      align-items: center;
       overflow: hidden;
     }
-
     .carousel {
       display: flex;
-      overflow-x: scroll;
       gap: 20px;
-      scroll-snap-type: x mandatory;
-      padding-bottom: 20px;
+      scroll-behavior: smooth;
+      overflow: hidden;
     }
     .carousel-item {
       flex: 0 0 auto;
@@ -97,12 +93,8 @@
       margin-top: 15px;
       color: #333;
     }
-    .carousel-item p {
-      font-size: 14px;
-      color: #666;
-    }
-
-    /* Setas do Carrossel */
+    
+    /* Botões Laterais do Carrossel */
     .carousel-btn {
       position: absolute;
       top: 50%;
@@ -113,16 +105,20 @@
       padding: 15px;
       cursor: pointer;
       border-radius: 50%;
+      font-size: 20px;
       z-index: 10;
     }
+    .carousel-btn:hover {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
     .carousel-btn.prev {
-      left: 20px;
+      left: 10px;
     }
     .carousel-btn.next {
-      right: 20px;
+      right: 10px;
     }
   </style>
-</head>
+</head> 
 <body>
 
 <!-- Menu Lateral -->
@@ -131,71 +127,60 @@
   <a href="#">Início</a>
   <a href="#">Combinações</a>
   <a href="#">Câmera</a>
-  <a href="#">Favoriros</a>
+  <a href="#">Favoritos</a>
   <a href="#">Perfil</a>
   <a href="#">Sair</a>
 </div>
 
 <!-- Conteúdo Principal -->
 <div class="content">
-  <!-- Seção Hero -->
   <section class="hero">
     <h1>Seja Bem-Vindo</h1>
     <p>Descubra sugestões de looks para diferentes estilos.</p>
   </section>
 
   <!-- Carrossel de Looks -->
-  <section class="carousel-container" style="position: relative;">
+  <section class="carousel-container">
     <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#10094;</button>
     <div class="carousel" id="carousel">
-      <!-- Looks -->
       <div class="carousel-item">
         <img src="look1.jpg" alt="Look 1">
         <h3>Look Casual</h3>
-        <p>Perfeito para o dia a dia.</p>
       </div>
       <div class="carousel-item">
         <img src="look2.jpg" alt="Look 2">
         <h3>Look Elegante/Clássico</h3>
-        <p>Para ocasiões especiais.</p>
       </div>
       <div class="carousel-item">
         <img src="look3.jpg" alt="Look 3">
         <h3>Look Esportivo</h3>
-        <p>Estilo e conforto.</p>
       </div>
       <div class="carousel-item">
-        <img src="" alt="Look 4">
+        <img src="look4.jpg" alt="Look 4">
         <h3>Look Minimalista</h3>
-        <p>Para o trabalho</p>
       </div>
       <div class="carousel-item">
-        <img src="" alt="Look 5">
+        <img src="look5.jpg" alt="Look 5">
         <h3>Look Urbano/Streetwear</h3>
-        <p>Para skatista</p>
       </div>
-      <div class="carouel-item">
-        <img src="" alt="look 6">
+      <div class="carousel-item">
+        <img src="look6.jpg" alt="Look 6">
         <h3>Look Vintage/Retrô</h3>
-        <p></p>
       </div>
-      <div class="carouel-item">
-        <img src="" alt="look 7">
+      <div class="carousel-item">
+        <img src="look7.jpg" alt="Look 7">
         <h3>Look Boho/Despojado</h3>
-        <p></p>
-      <!-- Adicionar outros looks aqui -->
+      </div>
     </div>
-    <button class="carousel-btn.prev" onclick="moveCarousel(1)">&#10095;</button>
-    <button class="carousel-btn.next" onclick="moveCarousel(1)">&#10095;</button>
+    <button class="carousel-btn next" onclick="moveCarousel(1)">&#10095;</button>
   </section>
 </div>
-<!-- JavaScript -->
+
 <script>
   // Menu Lateral - Mostrar ao passar o mouse
   const sidebar = document.getElementById('sidebar');
-
   document.body.addEventListener('mousemove', (event) => {
-    if (event.clientX < 50) {  // Quando o mouse estiver muito perto da borda esquerda
+    if (event.clientX < 50) {
       sidebar.classList.add('show');
     } else {
       sidebar.classList.remove('show');
@@ -203,20 +188,13 @@
   });
 
   // Carrossel - Mover itens
-  let scrollIndex = 0;
   const carousel = document.getElementById('carousel');
-  const items = document.querySelectorAll('.carousel-item');
-  const totalItems = items.length;
+  let scrollAmount = 0;
+  const itemWidth = 270;
 
   function moveCarousel(direction) {
-    scrollIndex += direction;
-    if (scrollIndex < 0) scrollIndex = totalItems - 1;
-    if (scrollIndex >= totalItems) scrollIndex = 0;
-    const itemWidth = items[0].offsetWidth + 20; // 20px de espaçamento
-    carousel.scrollTo({
-      left: itemWidth * scrollIndex,
-      behavior: 'smooth'
-    });
+    scrollAmount += direction * itemWidth;
+    carousel.scrollTo({ left: scrollAmount, behavior: 'smooth' });
   }
 </script>
 
