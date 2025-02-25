@@ -121,14 +121,6 @@
     .carousel-btn.next {
       right: 20px;
     }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-      color: #888;
-      background-color: #f9f9f9;
-    }
   </style>
 </head>
 <body>
@@ -156,7 +148,7 @@
   <section class="carousel-container" style="position: relative;">
     <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#10094;</button>
     <div class="carousel" id="carousel">
-      <!-- 11 Looks -->
+      <!-- Looks -->
       <div class="carousel-item">
         <img src="look1.jpg" alt="Look 1">
         <h3>Look Casual</h3>
@@ -164,7 +156,7 @@
       </div>
       <div class="carousel-item">
         <img src="look2.jpg" alt="Look 2">
-        <h3>Look Formal</h3>
+        <h3>Look Elegante/Clássico</h3>
         <p>Para ocasiões especiais.</p>
       </div>
       <div class="carousel-item">
@@ -179,12 +171,22 @@
       </div>
       <div class="carousel-item">
         <img src="" alt="Look 5">
-        <h3>Look Streetwear</h3>
+        <h3>Look Urbano/Streetwear</h3>
         <p>Para skatista</p>
       </div>
-      <!-- Adicionar outros 8 looks aqui -->
+      <div class="carouel-item">
+        <img src="" alt="look 6">
+        <h3>Look Vintage/Retrô</h3>
+        <p></p>
+      </div>
+      <div class="carouel-item">
+        <img src="" alt="look 7">
+        <h3>Look Boho/Despojado</h3>
+        <p></p>
+      <!-- Adicionar outros looks aqui -->
     </div>
-    <button class="carousel-btn next" onclick="moveCarousel(1)">&#10095;</button>
+    <button class="carousel-btn.prev" onclick="moveCarousel(1)">&#10095;</button>
+    <button class="carousel-btn.next" onclick="moveCarousel(1)">&#10095;</button>
   </section>
 </div>
 <!-- JavaScript -->
